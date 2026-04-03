@@ -762,7 +762,7 @@ h1, h2, h3, h4 {
     /* --- Carousel Containers: Compact for mobile screens --- */
     .carousel-container {
         position: relative;
-        aspect-ratio: 3 / 4;
+        aspect-ratio: 4 / 3;
         height: auto !important;
         width: 100%;
         margin-top: 0;
@@ -820,27 +820,30 @@ h1, h2, h3, h4 {
         object-position: center bottom !important;
     }
 
-    /* --- Carousel Nav Dots: Instagram-style indicator --- */
+    /* --- Carousel Nav Dots: Enhanced Visibility --- */
     .carousel-nav {
         display: flex !important;
         position: static;
         justify-content: center;
-        padding: 10px 0 5px;
-        gap: 7px;
+        padding: 15px 0 10px;
+        gap: 10px;
         transform: none;
         left: auto;
         bottom: auto;
     }
     .dot {
-        width: 8px;
-        height: 8px;
-        background: rgba(44, 94, 59, 0.25);
+        width: 10px;
+        height: 10px;
+        background: rgba(44, 94, 59, 0.2);
+        border: 1px solid var(--primary-green);
         border-radius: 50%;
-        transition: all 0.3s;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
     }
     .dot.active {
-        background: var(--primary-green);
-        transform: scale(1.3);
+        background: var(--primary-green) !important;
+        transform: scale(1.4);
+        box-shadow: 0 0 10px rgba(44, 94, 59, 0.3);
     }
 
     /* --- Slide Captions: Scale down and anchor properly --- */
