@@ -658,16 +658,29 @@ h1, h2, h3, h4 {
 /* Responsive Design */
 @media (max-width: 992px) {
     .vision-container {
-        flex-direction: column;
         text-align: center;
     }
-    .vision-text, .ideas-text {
+    .vision-container.sticky-content {
+        position: relative;
+        justify-content: center;
+        padding-top: 0;
+    }
+    .vision-text {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        width: 90%;
+        transform: translateY(-50%);
+        transition: opacity 0.4s ease;
+        z-index: 10;
+        margin-top: 0;
+    }
+    .ideas-text {
         margin-top: 0;
     }
     .sticky-content {
         padding-top: 60px;
     }
-    .vision-container.sticky-content,
     .ideas-container.sticky-content {
         flex-direction: column;
     }
@@ -678,7 +691,16 @@ h1, h2, h3, h4 {
     .gallery-text {
         text-align: center;
     }
-    .vision-slider,
+    .vision-slider {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 65vh !important;
+        transform: translateY(-50%);
+        transition: opacity 0.4s ease;
+        margin-top: 0;
+    }
     .ideas-slider,
     .gallery-slider {
         flex: 1 1 auto;
