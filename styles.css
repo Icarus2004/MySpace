@@ -757,17 +757,18 @@ h1, h2, h3, h4 {
     /* --- Carousel Containers: Compact for mobile screens --- */
     .carousel-container {
         position: relative;
-        height: 35vh !important;
+        height: 38vh !important;
         width: 100%;
         margin-top: 0;
         opacity: 1 !important;
         transform: none;
         box-shadow: 0 10px 30px rgba(0,0,0,0.12);
         border-radius: 10px;
+        overflow: hidden;
     }
     .vision-slider {
         aspect-ratio: auto;
-        height: 40vh !important;
+        height: 42vh !important;
     }
 
     /* --- Native Horizontal Swipe Carousel --- */
@@ -786,27 +787,46 @@ h1, h2, h3, h4 {
         display: none;
     }
     .carousel-slide {
-        position: relative; /* CRITICAL: anchors captions & plant labels inside */
+        position: relative;
         flex: 0 0 100%;
         height: 100%;
         opacity: 1;
         pointer-events: auto;
         scroll-snap-align: center;
-        scroll-snap-stop: always; /* Prevent skipping slides */
+        scroll-snap-stop: always;
         transition: none;
+        background: #f0f0f0; /* Subtle bg behind contained images */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .carousel-slide img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Fill slide without blank space */
-    }
-    .vision-slider .carousel-slide img {
-        object-fit: contain; /* Keep contain for vision sketches */
+        object-fit: contain; /* Show full image, no cropping */
     }
 
-    /* --- Carousel Nav Dots --- */
+    /* --- Carousel Nav Dots: Instagram-style indicator --- */
     .carousel-nav {
-        display: none; /* Hide dots since user swipes manually */
+        display: flex !important;
+        position: static;
+        justify-content: center;
+        padding: 10px 0 5px;
+        gap: 7px;
+        transform: none;
+        left: auto;
+        bottom: auto;
+    }
+    .dot {
+        width: 8px;
+        height: 8px;
+        background: rgba(44, 94, 59, 0.25);
+        border-radius: 50%;
+        transition: all 0.3s;
+    }
+    .dot.active {
+        background: var(--primary-green);
+        transform: scale(1.3);
     }
 
     /* --- Slide Captions: Scale down and anchor properly --- */

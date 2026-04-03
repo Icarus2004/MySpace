@@ -49,8 +49,20 @@ document.querySelectorAll('.scroll-sequence').forEach(sequence => {
     
     // Skip all sticky-scroll sequence logic on mobile, opting for native CSS layout instead
     if (window.innerWidth <= 992) {
-        sequence.style.height = 'auto'; // ensure it does not expand to multiple screens height
-        slides.forEach(slide => slide.classList.add('active')); // enable all natively
+        sequence.style.height = 'auto';
+        slides.forEach(slide => slide.classList.add('active'));
+        
+        // Sync dot indicators with swipe position
+        if (dots.length > 0 && track) {
+            track.addEventListener('scroll', () => {
+                const scrollLeft = track.scrollLeft;
+                const slideWidth = track.offsetWidth;
+                const activeIndex = Math.round(scrollLeft / slideWidth);
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === activeIndex);
+                });
+            }, { passive: true });
+        }
         return; 
     }
 
