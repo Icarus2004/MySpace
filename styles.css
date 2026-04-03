@@ -662,14 +662,17 @@ h1, h2, h3, h4 {
         text-align: center;
     }
     .vision-container.sticky-content,
-    .ideas-container.sticky-content,
-    .gallery-container.sticky-content {
+    .ideas-container.sticky-content {
         flex-direction: column;
+    }
+    .gallery-container.sticky-content {
+        flex-direction: column-reverse;
     }
     .ideas-text,
     .gallery-text {
         text-align: center;
     }
+    .vision-slider,
     .ideas-slider,
     .gallery-slider {
         height: 50vh;
@@ -693,8 +696,24 @@ h1, h2, h3, h4 {
     .hero-content {
         padding: 40px 20px;
     }
+    .menu-toggle {
+        display: block !important;
+    }
     .nav-links {
-        display: none; /* Just for simplicity right now, usually a hamburger menu here */
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(248, 250, 248, 0.98);
+        flex-direction: column;
+        padding: 20px 5%;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        gap: 20px;
+        text-align: center;
+    }
+    .nav-links.active {
+        display: flex;
     }
 }
 
