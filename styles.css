@@ -772,8 +772,8 @@ h1, h2, h3, h4 {
         overflow: hidden;
     }
     .vision-slider {
-        aspect-ratio: auto;
-        height: 20vh !important;
+        aspect-ratio: 1 / 1;
+        height: auto !important;
     }
 
     /* --- Native Horizontal Swipe Carousel --- */
