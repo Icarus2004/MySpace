@@ -293,6 +293,11 @@ h1, h2, h3, h4 {
     box-shadow: 0 20px 40px rgba(44, 94, 59, 0.15);
 }
 
+.ideas-img {
+    object-fit: contain;
+    background-color: #fff;
+}
+
 .gallery-slider {
     flex: 1.2;
     margin: 0;
@@ -813,6 +818,14 @@ h1, h2, h3, h4 {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+
+    /* Captions & labels must sit ABOVE images */
+    .slide-caption {
+        z-index: 2;
+    }
+    .plant-label {
+        z-index: 2;
     }
 
     /* --- Carousel Nav Dots: Instagram-style indicator --- */
