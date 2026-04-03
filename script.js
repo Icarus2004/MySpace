@@ -47,22 +47,44 @@ document.querySelectorAll('.scroll-sequence').forEach(sequence => {
     const dotsContainer = sequence.querySelector('.carousel-nav');
     let dots = dotsContainer ? Array.from(dotsContainer.children) : [];
     
-    // Skip all sticky-scroll sequence logic on mobile, opting for native CSS layout instead
+    // Mobile Logic: Crossfade transition (stacking slides)
     if (window.innerWidth <= 992) {
         sequence.style.height = 'auto';
-        slides.forEach(slide => slide.classList.add('active'));
-        
-        // Sync dot indicators with swipe position
-        if (dots.length > 0 && track) {
-            track.addEventListener('scroll', () => {
-                const scrollLeft = track.scrollLeft;
-                const slideWidth = track.offsetWidth;
-                const activeIndex = Math.round(scrollLeft / slideWidth);
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === activeIndex);
-                });
-            }, { passive: true });
+        let currentIndex = 0;
+
+        function updateMobileSlide(index) {
+            if (index < 0) index = slides.length - 1;
+            if (index >= slides.length) index = 0;
+            currentIndex = index;
+
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === currentIndex);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
         }
+
+        // Initialize first slide as active
+        updateMobileSlide(0);
+
+        // Dot navigation
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => updateMobileSlide(i));
+        });
+
+        // Swipe detection for crossfade
+        let touchStartX = 0;
+        track.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', e => {
+            const touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 40) updateMobileSlide(currentIndex + 1); // Swipe Left -> Next
+            if (touchEndX - touchStartX > 40) updateMobileSlide(currentIndex - 1); // Swipe Right -> Prev
+        }, { passive: true });
+
         return; 
     }
 
