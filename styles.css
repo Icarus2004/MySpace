@@ -657,92 +657,7 @@ h1, h2, h3, h4 {
 
 /* Responsive Design */
 @media (max-width: 992px) {
-    .vision-container,
-    .ideas-container,
-    .gallery-container {
-        text-align: center;
-        width: 100%;
-    }
-    
-    .scroll-sequence {
-        height: auto !important; /* Override JS inline height */
-    }
-
-    .sticky-content {
-        position: static;
-        height: auto;
-        overflow: visible;
-        padding-top: 40px;
-        padding-bottom: 40px;
-        flex-direction: column !important; /* Stack text then slider natively */
-        align-items: center;
-        gap: 30px;
-    }
-
-    .vision-text,
-    .ideas-text,
-    .gallery-text {
-        position: static;
-        transform: none;
-        width: 100%;
-        margin-top: 0;
-        opacity: 1 !important; /* Override JS fade */
-    }
-
-    .carousel-container {
-        position: relative;
-        height: 60vh !important;
-        width: 100%;
-        margin-top: 0;
-        opacity: 1 !important; /* Override JS fade */
-        transform: none;
-    }
-
-    /* Native Horizontal Scroll Setup */
-    .carousel-track {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        height: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        /* Hide scrollbar for clean app look */
-        scrollbar-width: none; 
-    }
-    .carousel-track::-webkit-scrollbar {
-        display: none; 
-    }
-
-    .carousel-slide {
-        position: static;
-        flex: 0 0 100%; /* Takes full width of track, sitting side by side */
-        height: 100%;
-        opacity: 1; /* Disable custom fade transition */
-        pointer-events: auto;
-        scroll-snap-align: center;
-        transition: none; /* Disable JS transition lag */
-    }
-    .underline {
-        margin: 15px auto 30px;
-    }
-    .hero h1 {
-        font-size: 3.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    .hero p {
-        font-size: 1.2rem;
-    }
-    .hero-content {
-        padding: 40px 20px;
-    }
+    /* --- Navigation: Show hamburger at tablet/mobile --- */
     .menu-toggle {
         display: block !important;
     }
@@ -762,5 +677,171 @@ h1, h2, h3, h4 {
     .nav-links.active {
         display: flex;
     }
-}
 
+    /* --- Hero: Fix parallax and scale text --- */
+    .hero {
+        background-attachment: scroll; /* Fixed bg breaks on most mobile browsers */
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+    .hero-content {
+        padding: 40px 25px;
+    }
+
+    /* --- About Section --- */
+    .about h2 {
+        font-size: 2.2rem;
+    }
+    .about-content {
+        font-size: 1.05rem;
+    }
+    .highlight-quote {
+        font-size: 1.5rem;
+    }
+
+    /* --- Scroll Sequence Sections: Disable sticky, go vertical --- */
+    .scroll-sequence {
+        height: auto !important; /* Override JS inline height */
+    }
+    .sticky-content {
+        position: static;
+        height: auto;
+        overflow: visible;
+        padding: 40px 5%;
+        flex-direction: column !important; /* Text above, images below */
+        align-items: center;
+        gap: 25px;
+    }
+
+    /* --- Section Containers --- */
+    .vision-container,
+    .ideas-container,
+    .gallery-container {
+        text-align: center;
+        width: 100%;
+        gap: 25px;
+    }
+
+    /* --- Text Blocks: Reset any absolute/sticky positioning --- */
+    .vision-text,
+    .ideas-text,
+    .gallery-text {
+        position: static;
+        transform: none;
+        width: 100%;
+        margin-top: 0;
+        opacity: 1 !important;
+        text-align: center;
+    }
+    .vision-text h2,
+    .ideas-text h2,
+    .gallery-text h2 {
+        font-size: 2rem;
+    }
+    .vision-text p,
+    .ideas-text p,
+    .gallery-text p {
+        font-size: 0.95rem;
+    }
+
+    /* --- Gallery Section: Text comes BEFORE images on mobile --- */
+    .gallery-container.sticky-content {
+        flex-direction: column-reverse !important;
+    }
+
+    /* --- Carousel Containers: Sized for mobile screens --- */
+    .carousel-container {
+        position: relative;
+        height: 55vh !important;
+        width: 100%;
+        margin-top: 0;
+        opacity: 1 !important;
+        transform: none;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+    .vision-slider {
+        aspect-ratio: auto;
+    }
+
+    /* --- Native Horizontal Swipe Carousel --- */
+    .carousel-track {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .carousel-track::-webkit-scrollbar {
+        display: none;
+    }
+    .carousel-slide {
+        position: static;
+        flex: 0 0 100%;
+        height: 100%;
+        opacity: 1;
+        pointer-events: auto;
+        scroll-snap-align: center;
+        transition: none;
+    }
+
+    /* --- Carousel Nav Dots --- */
+    .carousel-nav {
+        display: none; /* Hide dots since user swipes manually */
+    }
+
+    /* --- Slide Captions: Scale down --- */
+    .slide-caption {
+        font-size: 1.1rem;
+        padding: 10px 18px;
+        left: 15px;
+        bottom: 15px;
+    }
+    .vision-slider .slide-caption {
+        font-size: 1rem;
+        top: 10px;
+        left: 10px;
+    }
+
+    /* --- Underline center on mobile --- */
+    .underline {
+        margin: 15px auto 25px;
+    }
+
+    /* --- Contact Section: Stack form and QR vertically --- */
+    .contact h2 {
+        font-size: 2.2rem;
+    }
+    .contact-layout {
+        flex-direction: column !important;
+        gap: 25px !important;
+    }
+    .contact-form {
+        padding: 30px 20px !important;
+        min-width: unset !important;
+    }
+    .contact-qr {
+        padding: 30px 20px !important;
+        min-width: unset !important;
+    }
+
+    /* --- Footer: Scale down --- */
+    .footer {
+        padding: 50px 5% 25px;
+    }
+    .footer-logo {
+        font-size: 1.8rem;
+    }
+    .footer-tagline {
+        font-size: 1rem;
+    }
+}
