@@ -657,57 +657,73 @@ h1, h2, h3, h4 {
 
 /* Responsive Design */
 @media (max-width: 992px) {
-    .vision-container {
+    .vision-container,
+    .ideas-container,
+    .gallery-container {
         text-align: center;
+        width: 100%;
     }
-    .vision-container.sticky-content {
-        position: relative;
-        justify-content: center;
-        padding-top: 0;
+    
+    .scroll-sequence {
+        height: auto !important; /* Override JS inline height */
     }
-    .vision-text {
-        position: absolute;
-        top: 50%;
-        left: 5%;
-        width: 90%;
-        transform: translateY(-50%);
-        transition: opacity 0.4s ease;
-        z-index: 10;
-        margin-top: 0;
-    }
-    .ideas-text {
-        margin-top: 0;
-    }
+
     .sticky-content {
-        padding-top: 60px;
+        position: static;
+        height: auto;
+        overflow: visible;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        flex-direction: column !important; /* Stack text then slider natively */
+        align-items: center;
+        gap: 30px;
     }
-    .ideas-container.sticky-content {
-        flex-direction: column;
-    }
-    .gallery-container.sticky-content {
-        flex-direction: column-reverse;
-    }
+
+    .vision-text,
     .ideas-text,
     .gallery-text {
-        text-align: center;
-    }
-    .vision-slider {
-        position: absolute;
-        top: 50%;
-        left: 0;
+        position: static;
+        transform: none;
         width: 100%;
-        height: 65vh !important;
-        transform: translateY(-50%);
-        transition: opacity 0.4s ease;
         margin-top: 0;
+        opacity: 1 !important; /* Override JS fade */
     }
-    .ideas-slider,
-    .gallery-slider {
-        flex: 1 1 auto;
-        min-height: 200px;
-        height: auto;
+
+    .carousel-container {
+        position: relative;
+        height: 60vh !important;
         width: 100%;
-        margin-top: 10px;
+        margin-top: 0;
+        opacity: 1 !important; /* Override JS fade */
+        transform: none;
+    }
+
+    /* Native Horizontal Scroll Setup */
+    .carousel-track {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        /* Hide scrollbar for clean app look */
+        scrollbar-width: none; 
+    }
+    .carousel-track::-webkit-scrollbar {
+        display: none; 
+    }
+
+    .carousel-slide {
+        position: static;
+        flex: 0 0 100%; /* Takes full width of track, sitting side by side */
+        height: 100%;
+        opacity: 1; /* Disable custom fade transition */
+        pointer-events: auto;
+        scroll-snap-align: center;
+        transition: none; /* Disable JS transition lag */
     }
     .underline {
         margin: 15px auto 30px;

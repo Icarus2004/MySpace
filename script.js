@@ -47,6 +47,13 @@ document.querySelectorAll('.scroll-sequence').forEach(sequence => {
     const dotsContainer = sequence.querySelector('.carousel-nav');
     let dots = dotsContainer ? Array.from(dotsContainer.children) : [];
     
+    // Skip all sticky-scroll sequence logic on mobile, opting for native CSS layout instead
+    if (window.innerWidth <= 992) {
+        sequence.style.height = 'auto'; // ensure it does not expand to multiple screens height
+        slides.forEach(slide => slide.classList.add('active')); // enable all natively
+        return; 
+    }
+
     // Set sequence height based on number of slides (100vh per slide)
     sequence.style.height = `${slides.length * 100}vh`;
 
@@ -65,29 +72,6 @@ document.querySelectorAll('.scroll-sequence').forEach(sequence => {
         progress = Math.max(0, Math.min(1, progress));
         
         let activeIndex = Math.min(Math.floor(progress * slides.length), slides.length - 1);
-        
-        // Custom mobile logic to fade out text and fade in images
-        if (window.innerWidth <= 992 && sequence.id === 'vision') {
-            const vText = sequence.querySelector('.vision-text');
-            const vSlider = sequence.querySelector('.vision-slider');
-            if (vText && vSlider) {
-                if (progress < 0.2) {
-                    vText.style.opacity = '1';
-                    vText.style.pointerEvents = 'auto';
-                    vSlider.style.opacity = '0';
-                    vSlider.style.pointerEvents = 'none';
-                    activeIndex = 0; // lock on first background logic
-                } else {
-                    vText.style.opacity = '0';
-                    vText.style.pointerEvents = 'none';
-                    vSlider.style.opacity = '1';
-                    vSlider.style.pointerEvents = 'auto';
-                    
-                    let adjustedProgress = (progress - 0.2) / 0.8;
-                    activeIndex = Math.min(Math.floor(adjustedProgress * slides.length), slides.length - 1);
-                }
-            }
-        }
 
         // Update slides classes
         slides.forEach((slide, index) => {
