@@ -160,7 +160,7 @@ h1, h2, h3, h4 {
     padding: 0 5%;
     position: relative;
     background: linear-gradient(rgba(248, 250, 248, 0.8), rgba(248, 250, 248, 0.2)),
-                url('C:/Users/pratt/.gemini/antigravity/brain/7abc0235-b403-423f-9a9d-f3f932b5f797/balcony_plants_1774595165789.png') center/cover no-repeat;
+                url('assets/images/balcony_plants_1774595165789.png') center/cover no-repeat;
     background-attachment: fixed;
 }
 
@@ -697,3 +697,4 @@ h1, h2, h3, h4 {
         display: none; /* Just for simplicity right now, usually a hamburger menu here */
     }
 }
+
