@@ -801,26 +801,19 @@ h1, h2, h3, h4 {
         scroll-snap-stop: always;
         transition: none;
         overflow: hidden;
-    }
-    /* Frosted bark texture behind every slide */
-    .carousel-slide::before {
-        content: '';
-        position: absolute;
-        inset: 0;
         background: url('assets/images/bark_texture.png') center/cover no-repeat;
-        filter: blur(2px) brightness(0.85);
-        z-index: 0;
     }
-    /* All images fill the frame completely - no empty space */
+    /* Force images to fill every pixel */
     .carousel-slide img {
-        position: relative;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
         z-index: 1;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
     }
-
-    /* Captions & labels must sit ABOVE images */
+    /* Captions & labels above images */
     .slide-caption {
         z-index: 2;
     }
