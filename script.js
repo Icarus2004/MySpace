@@ -135,6 +135,19 @@ document.querySelectorAll('.fade-in').forEach(element => {
     observer.observe(element);
 });
 
+// Mobile: Tap to show/hide plant labels
+if (window.innerWidth <= 992) {
+    document.querySelectorAll('.carousel-slide').forEach(slide => {
+        slide.addEventListener('click', (e) => {
+            // Don't toggle if tapping a link or button
+            if (e.target.closest('a') || e.target.closest('button')) return;
+            
+            // Toggle labels on this slide
+            slide.classList.toggle('label-visible');
+        });
+    });
+}
+
 // Form submission handler using Formsubmit for actual email delivery
 document.querySelector('.contact-form').addEventListener('submit', (e) => {
     e.preventDefault();

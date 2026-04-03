@@ -754,18 +754,20 @@ h1, h2, h3, h4 {
         flex-direction: column-reverse !important;
     }
 
-    /* --- Carousel Containers: Sized for mobile screens --- */
+    /* --- Carousel Containers: Compact for mobile screens --- */
     .carousel-container {
         position: relative;
-        height: 55vh !important;
+        height: 35vh !important;
         width: 100%;
         margin-top: 0;
         opacity: 1 !important;
         transform: none;
         box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        border-radius: 10px;
     }
     .vision-slider {
         aspect-ratio: auto;
+        height: 40vh !important;
     }
 
     /* --- Native Horizontal Swipe Carousel --- */
@@ -777,7 +779,6 @@ h1, h2, h3, h4 {
         overflow-x: auto;
         overflow-y: hidden;
         scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
     }
@@ -785,13 +786,22 @@ h1, h2, h3, h4 {
         display: none;
     }
     .carousel-slide {
-        position: static;
+        position: relative; /* CRITICAL: anchors captions & plant labels inside */
         flex: 0 0 100%;
         height: 100%;
         opacity: 1;
         pointer-events: auto;
         scroll-snap-align: center;
+        scroll-snap-stop: always; /* Prevent skipping slides */
         transition: none;
+    }
+    .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Fill slide without blank space */
+    }
+    .vision-slider .carousel-slide img {
+        object-fit: contain; /* Keep contain for vision sketches */
     }
 
     /* --- Carousel Nav Dots --- */
@@ -799,17 +809,31 @@ h1, h2, h3, h4 {
         display: none; /* Hide dots since user swipes manually */
     }
 
-    /* --- Slide Captions: Scale down --- */
+    /* --- Slide Captions: Scale down and anchor properly --- */
     .slide-caption {
-        font-size: 1.1rem;
-        padding: 10px 18px;
-        left: 15px;
-        bottom: 15px;
+        position: absolute;
+        font-size: 1rem;
+        padding: 8px 14px;
+        left: 10px;
+        bottom: 10px;
+        max-width: 80%;
     }
     .vision-slider .slide-caption {
-        font-size: 1rem;
-        top: 10px;
-        left: 10px;
+        font-size: 0.9rem;
+        top: 8px;
+        left: 8px;
+        bottom: auto;
+    }
+
+    /* --- Plant Labels: Tap to show on mobile --- */
+    .carousel-slide .plant-label {
+        opacity: 0;
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+    .carousel-slide.label-visible .plant-label {
+        opacity: 1;
+        transform: translate(-50%, 0);
     }
 
     /* --- Underline center on mobile --- */
