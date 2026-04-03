@@ -762,7 +762,7 @@ h1, h2, h3, h4 {
     /* --- Carousel Containers: Compact for mobile screens --- */
     .carousel-container {
         position: relative;
-        height: 38vh !important;
+        height: 28vh !important;
         width: 100%;
         margin-top: 0;
         opacity: 1 !important;
@@ -773,7 +773,7 @@ h1, h2, h3, h4 {
     }
     .vision-slider {
         aspect-ratio: auto;
-        height: 42vh !important;
+        height: 32vh !important;
     }
 
     /* --- Native Horizontal Swipe Carousel --- */
