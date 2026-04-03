@@ -795,15 +795,24 @@ h1, h2, h3, h4 {
         scroll-snap-align: center;
         scroll-snap-stop: always;
         transition: none;
-        background: #f0f0f0; /* Subtle bg behind contained images */
+        background: url('assets/images/bark_texture.png') center/cover no-repeat;
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    .carousel-slide img {
+    /* Gallery & Ideas images: fill the frame, no empty space */
+    .gallery-slider .carousel-slide img,
+    .ideas-slider .carousel-slide img {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* Show full image, no cropping */
+        object-fit: cover;
+    }
+    /* Vision slider images: contain to show full image, bark bg fills sides */
+    .vision-slider .carousel-slide img {
+        width: auto;
+        max-width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
 
     /* --- Carousel Nav Dots: Instagram-style indicator --- */
