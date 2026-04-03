@@ -822,6 +822,12 @@ h1, h2, h3, h4 {
         z-index: 2;
     }
 
+    /* Target specific vision images to show the bottom part */
+    .vision-slider .carousel-slide:nth-child(2) img,
+    .vision-slider .carousel-slide:nth-child(3) img {
+        object-position: center bottom !important;
+    }
+
     /* --- Carousel Nav Dots: Instagram-style indicator --- */
     .carousel-nav {
         display: flex !important;
