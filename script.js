@@ -37,116 +37,112 @@ if(mobileMenu && navLinks) {
     });
 }
 
-// Scroll Sequence Logic for Galleries
-document.querySelectorAll('.scroll-sequence').forEach(sequence => {
-    const container = sequence.querySelector('.carousel-container');
-    const track = sequence.querySelector('.carousel-track');
-    if (!track) return;
-    
-    const slides = Array.from(track.children);
-    const dotsContainer = sequence.querySelector('.carousel-nav');
-    let dots = dotsContainer ? Array.from(dotsContainer.children) : [];
-    
-    // Mobile Logic: Crossfade transition (stacking slides)
-    if (window.innerWidth <= 992) {
-        sequence.style.height = 'auto';
-        let currentIndex = 0;
+// Lightbox Logic
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.querySelector('.lightbox-close');
+const galleryTriggers = document.querySelectorAll('.lightbox-trigger');
 
-        function updateMobileSlide(index) {
-            if (index < 0) index = slides.length - 1;
-            if (index >= slides.length) index = 0;
-            currentIndex = index;
-
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === currentIndex);
-            });
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentIndex);
-            });
-        }
-
-        // Initialize first slide as active
-        updateMobileSlide(0);
-
-        // Dot navigation
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => updateMobileSlide(i));
+if (lightbox && lightboxImg) {
+    galleryTriggers.forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function() {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = this.src;
         });
+    });
 
-        // Swipe detection for crossfade
-        let touchStartX = 0;
-        track.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
+    closeBtn.addEventListener('click', function() {
+        lightbox.style.display = 'none';
+    });
 
-        track.addEventListener('touchend', e => {
-            const touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 40) updateMobileSlide(currentIndex + 1); // Swipe Left -> Next
-            if (touchEndX - touchStartX > 40) updateMobileSlide(currentIndex - 1); // Swipe Right -> Prev
-        }, { passive: true });
+    lightbox.addEventListener('click', function(e) {
+        if (e.target !== lightboxImg) {
+            lightbox.style.display = 'none';
+        }
+    });
+}
 
-        return; 
-    }
 
-    // Set sequence height based on number of slides (100vh per slide)
-    sequence.style.height = `${slides.length * 100}vh`;
 
-    function updateScrollSequence() {
-        const rect = sequence.getBoundingClientRect();
-        const sequenceTop = rect.top;
-        const sequenceHeight = rect.height;
-        const viewportHeight = window.innerHeight;
+// Multi-step Form Logic
+const formSteps = document.querySelectorAll('.form-step');
+const progressSteps = document.querySelectorAll('.progress-step');
+const nextBtns = document.querySelectorAll('.next-btn');
+const prevBtns = document.querySelectorAll('.prev-btn');
 
-        const scrollRange = sequenceHeight - viewportHeight;
-        
-        if (scrollRange <= 0) return;
+function updateFormSteps(stepNumber) {
+    // Hide all steps
+    formSteps.forEach(step => step.style.display = 'none');
+    // Show target step
+    document.getElementById(`step-${stepNumber}`).style.display = 'block';
 
-        let scrolled = -sequenceTop;
-        let progress = scrolled / scrollRange;
-        progress = Math.max(0, Math.min(1, progress));
-        
-        let activeIndex = Math.min(Math.floor(progress * slides.length), slides.length - 1);
+    // Update progress bar
+    progressSteps.forEach(p => {
+        if (parseInt(p.getAttribute('data-step')) <= stepNumber) {
+            p.classList.add('active');
+        } else {
+            p.classList.remove('active');
+        }
+    });
+}
 
-        // Update slides classes
-        slides.forEach((slide, index) => {
-            if (index === activeIndex) {
-                slide.classList.add('active');
+nextBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // Basic validation before next
+        const currentStep = btn.closest('.form-step');
+        const requiredFields = currentStep.querySelectorAll('[required]');
+        let isValid = true;
+        requiredFields.forEach(field => {
+            if (!field.value) {
+                field.style.borderColor = 'red';
+                isValid = false;
             } else {
-                slide.classList.remove('active');
+                field.style.borderColor = '#E2E8F0';
             }
         });
-        
-        // Update dots
-        if (dots.length > 0) {
-            dots.forEach((dot, index) => {
-                if (index === activeIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
+
+        if (isValid) {
+            const nextStep = parseInt(btn.getAttribute('data-next'));
+            updateFormSteps(nextStep);
         }
-    }
-
-    // Add scroll listener
-    window.addEventListener('scroll', updateScrollSequence, { passive: true });
-    
-    // Dot click functionality
-    if (dots.length > 0) {
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                const scrollRange = sequence.offsetHeight - window.innerHeight;
-                // Add a small offset so it's safely within the target slide's range
-                const targetScroll = sequence.offsetTop + ((index + 0.5) / slides.length) * scrollRange;
-                window.scrollTo({ top: targetScroll, behavior: 'smooth' });
-            });
-        });
-    }
-
-    // Initial call
-    updateScrollSequence();
+    });
 });
 
+prevBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const prevStep = parseInt(btn.getAttribute('data-prev'));
+        updateFormSteps(prevStep);
+    });
+});
+
+// Form submission handler
+const consultationForm = document.getElementById('consultation-form');
+if (consultationForm) {
+    consultationForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = document.querySelector('.submit-btn');
+        const originalText = btn.textContent;
+        btn.textContent = 'Sending...';
+        btn.style.opacity = '0.8';
+        
+        // Normally we would use fetch here, simulating success for now
+        setTimeout(() => {
+            btn.textContent = 'Request Sent! 🌿';
+            btn.style.background = 'var(--primary-green)';
+            document.getElementById('form-success').style.display = 'block';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = ''; 
+                btn.style.opacity = '1';
+                document.getElementById('form-success').style.display = 'none';
+                consultationForm.reset();
+                updateFormSteps(1); // Go back to step 1
+            }, 3000);
+        }, 1500);
+    });
+}
 
 // Intersection Observer for scroll animations
 const observerOptions = {
@@ -167,54 +163,4 @@ const observer = new IntersectionObserver((entries, observer) => {
 
 document.querySelectorAll('.fade-in').forEach(element => {
     observer.observe(element);
-});
-
-// Mobile: Tap to show/hide plant labels
-if (window.innerWidth <= 992) {
-    document.querySelectorAll('.carousel-slide').forEach(slide => {
-        slide.addEventListener('click', (e) => {
-            // Don't toggle if tapping a link or button
-            if (e.target.closest('a') || e.target.closest('button')) return;
-            
-            // Toggle labels on this slide
-            slide.classList.toggle('label-visible');
-        });
-    });
-}
-
-// Form submission handler using Formsubmit for actual email delivery
-document.querySelector('.contact-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const btn = document.querySelector('.submit-btn');
-    const originalText = btn.textContent;
-    btn.textContent = 'Sending...';
-    btn.style.opacity = '0.8';
-    
-    const formData = new FormData(form);
-
-    fetch("https://formsubmit.co/ajax/exerevnomyspace@gmail.com", {
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        btn.textContent = 'Message Sent! 🌿';
-        btn.style.background = 'var(--primary-green)';
-        form.reset(); // clear form
-        
-        setTimeout(() => {
-            btn.textContent = originalText;
-            btn.style.background = ''; // restore gradient
-            btn.style.opacity = '1';
-        }, 3000);
-    })
-    .catch(error => {
-        console.error("Form submission error:", error);
-        btn.textContent = 'Error Sending';
-        setTimeout(() => {
-            btn.textContent = originalText;
-            btn.style.opacity = '1';
-        }, 3000);
-    });
 });
