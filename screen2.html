@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Verdant Studio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Noto+Serif:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#bcefc5",
+                        "primary-fixed": "#bceecd",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c1c9c1",
+                        "on-primary-fixed-variant": "#224f37",
+                        "tertiary-fixed": "#e4e2dd",
+                        "surface-bright": "#fbf9f8",
+                        "inverse-on-surface": "#f3f0f0",
+                        "secondary-fixed": "#bcefc5",
+                        "on-secondary-fixed": "#00210d",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#f0eded",
+                        "primary": "#14422b",
+                        "primary-fixed-dim": "#a1d2b2",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#002111",
+                        "surface-container-low": "#f6f3f2",
+                        "background": "#fbf9f8",
+                        "on-secondary": "#ffffff",
+                        "outline": "#717972",
+                        "surface": "#fbf9f8",
+                        "on-tertiary-container": "#c5c4bf",
+                        "surface-variant": "#e4e2e1",
+                        "surface-container-high": "#eae8e7",
+                        "on-surface-variant": "#414943",
+                        "inverse-primary": "#a1d2b2",
+                        "on-surface": "#1b1c1c",
+                        "tertiary-fixed-dim": "#c8c6c2",
+                        "on-background": "#1b1c1c",
+                        "inverse-surface": "#303030",
+                        "surface-tint": "#3a674e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#9fcfb0",
+                        "on-secondary-container": "#406e4d",
+                        "surface-container-highest": "#e4e2e1",
+                        "surface-dim": "#dcd9d9",
+                        "tertiary-container": "#51514e",
+                        "secondary": "#3a6847",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#225031",
+                        "on-tertiary-fixed": "#1b1c19",
+                        "primary-container": "#2d5a41",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#474744",
+                        "tertiary": "#3a3a37",
+                        "secondary-fixed-dim": "#a1d2aa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "2.5rem",
+                        "gutter": "1rem",
+                        "unit": "4px",
+                        "sm": "1rem",
+                        "md": "1.5rem",
+                        "xs": "0.5rem",
+                        "margin-mobile": "1.25rem",
+                        "xl": "4rem"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Noto Serif"],
+                        "headline-md": ["Noto Serif"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Noto Serif"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+        .ambient-shadow { box-shadow: 0 0 20px rgba(45,90,65,0.1); }
+        .text-shadow-sm { text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-[#F9F7F2] dark:bg-stone-950 font-serif text-lg tracking-tight docked full-width top-0 border-b border-[#2D5A41]/10 flat no shadows transition-opacity duration-200 active:opacity-70 fixed top-0 w-full z-50 flex justify-between items-center px-5 h-16 hidden md:flex">
+<button class="text-[#2D5A41] dark:text-emerald-400 hover:bg-stone-100 dark:hover:bg-stone-800 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="font-serif font-semibold text-[#2D5A41] dark:text-emerald-500 font-headline-md text-headline-md font-bold">Verdant Studio</div>
+<button class="text-[#2D5A41] dark:text-emerald-400 hover:bg-stone-100 dark:hover:bg-stone-800 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="eco">eco</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="w-full max-w-[1200px] mx-auto md:pt-16">
+<!-- Hero Section -->
+<section class="relative h-[707px] min-h-[600px] flex items-center justify-center bg-cover bg-center" data-alt="large high-quality background image of a lush minimalist balcony sanctuary with potted plants and warm soft sunlight" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB0fc9fDAqVJ_DJsKYDpr2hpGm79JTkfC973lFbgDBWYFXa_dHTCh58Sr4w24gSc6PrZjSJoRV8dxzboC_8hN8-SdRgi8mRlUICpKpt0zp94eGOSP2Pfhrdu1M-0pOVs_9C2xPLRXTTVjxVi8BCeBsr9x3o0i72RTd6Od1_sXwleJc1qFlN-WlCtDsxKFPDO7lQ27lNEy6sFrHe7pDJf3N1OacWazWkyXN7noqW2vXMvw-MuqFlR1m54JHTs3ZPYM-YcS5MgrxpjJk');">
+<div class="absolute inset-0 bg-black/20"></div>
+<div class="relative z-10 w-full px-margin-mobile flex justify-center mt-12 md:mt-0">
+<div class="bg-surface-container-lowest/95 backdrop-blur-sm p-8 md:p-12 rounded-xl text-center max-w-lg w-full ambient-shadow">
+<h1 class="font-headline-xl text-headline-xl text-primary mb-6">Transform Your Space into a Sanctuary</h1>
+<button class="bg-primary-container text-on-primary w-full py-4 rounded-lg font-label-md text-label-md active:scale-98 transition-transform duration-150">Book a Consultation</button>
+</div>
+</div>
+</section>
+<!-- About Us -->
+<section class="px-margin-mobile py-xl bg-surface-bright">
+<div class="max-w-3xl mx-auto text-center space-y-md">
+<h2 class="font-headline-lg text-headline-lg text-primary">About Us</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">We believe that your environment profoundly impacts your well-being. At Verdant Studio, we merge modern minimalist design with organic elements to create spaces that breathe, inspire, and restore.</p>
+</div>
+</section>
+<!-- Vision & Mission -->
+<section class="px-margin-mobile py-xl bg-surface">
+<div class="max-w-3xl mx-auto space-y-lg">
+<div class="flex flex-col items-center text-center space-y-sm">
+<div class="w-16 h-16 bg-secondary-container/20 rounded-full flex items-center justify-center text-primary-container mb-2">
+<span class="material-symbols-outlined text-[32px]" data-icon="visibility" style="font-variation-settings: 'FILL' 1;">visibility</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Our Vision</h3>
+<p class="text-on-surface-variant">To redefine modern living by seamlessly integrating nature into everyday spaces.</p>
+</div>
+<div class="w-full h-[1px] bg-outline-variant/30"></div>
+<div class="flex flex-col items-center text-center space-y-sm">
+<div class="w-16 h-16 bg-secondary-container/20 rounded-full flex items-center justify-center text-primary-container mb-2">
+<span class="material-symbols-outlined text-[32px]" data-icon="flag" style="font-variation-settings: 'FILL' 1;">flag</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Our Mission</h3>
+<p class="text-on-surface-variant">Crafting sustainable, serene environments through intentional design and natural materials.</p>
+</div>
+</div>
+</section>
+<!-- Our Projects (Bento Grid) -->
+<section class="px-margin-mobile py-xl bg-surface-container-low">
+<h2 class="font-headline-lg text-headline-lg text-primary text-center mb-lg">Our Projects</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-5xl mx-auto">
+<div class="relative h-64 md:h-full rounded-xl overflow-hidden group">
+<img alt="Urban Oasis Balcony" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="modern minimalist balcony with lush green potted plants and natural wood decking" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzXkKtd6RMoclyaW4YbWUk1-bOdQbIQwJdgp0RBV5OkQbZWFrgpYtNIjnZvTO0UnctXU0Pd6UpAfNYWc6fj6Mw9Dggd34Tnmsaa-Hcmvrf1N44Fb6JJfKuQUWktM6BZse-6OPu2NLRnD84U2uLKKtYv6_VU_ILW5cdx9R_O4BpGL9YiK6DhK1_DOuYPPQ3z-HBxygilh9ltYEwXreEx8mg7yjmSzErj1ZjZl93zP2FntN-V2RIwOKpeeXA_bezQBW86rXf-HP4nKU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+<h3 class="font-headline-md text-headline-md text-on-tertiary">Urban Oasis</h3>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="relative h-48 rounded-xl overflow-hidden group">
+<img alt="Serene Bedroom" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="minimalist serene bedroom with neutral tones and organic textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzuwmdDlEjIimMVADlgX5yWha6B0yJEdBpCkiFnS60V0Jbt-WKbUKsYaANPo82AI5jKA7yWNb8nOevqa56wgRKjYHZcBuk6hIVYIy5b7FRCH3RtRm-2ygloQlABQPwnHPmSuobq6cPSHXKql85LUw0BCi4o6pPlE8UwlhtSr2RfJZ7cZBeuOCfwsEFpLI560C0CtBPjkWkJJ7KMZXBAwp0ko6cotrwQyvIYqVWimigdC6rTd2pAx-OAP_gfmOzseuYGcR0QKqpEzQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+<h3 class="font-label-md text-label-md text-on-tertiary">Serene Retreat</h3>
+</div>
+</div>
+<div class="relative h-48 rounded-xl overflow-hidden group">
+<img alt="Minimalist Kitchen" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="clean minimalist kitchen with natural light and plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSgHMmdMbdzp08xEv82ZwVW45b69vcKq_cEAFZ4kRNqagYmGB0YRjdRuowmf--XpCR4T5E8yJWkDCoSmTd2ZYpUxe-lCEpFevdvF-lV4gvpR4h8hBrwxsGRmEJ-8XvYiadgon0I3e5JHHJ7fy0GJ_83-2RL6IqA5Ycy1XTyW_NkgpQQolz933D9KNHfOrvK5am1GfjQU_Ppyx9GUSZQm6sSzPjvUVqUjYQyJv86-M2PjeujP6lT8bAL9O_QmZJ5wn6ReI-PkjxAps"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+<h3 class="font-label-md text-label-md text-on-tertiary">Natural Light</h3>
+</div>
+</div>
+<div class="relative h-48 col-span-2 rounded-xl overflow-hidden group">
+<img alt="Living Room" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="modern living room with large windows overlooking greenery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB14HYXlMKXXRQV4KlS4_Wk0eedj5_W4WF0KMnAtzf9aCd4wxieF4mtOi9LE3vk9u5CM5Ty1xJdClo3ceOuNcf-YaVukZENQgPcb9NWakXCSB_Vm_-b6ecXJYhFNZk2U08oZmdX2EXjse5AAr1SOvnAYxlDzqyvLHsb1shkVAeke9Td1P2ByEXTopKez9iHx6JcBWWLXG3qVKLgHhV2R85ZT7YXfrIUJ1Ds1D_TNQTOzQzG2N9zD_K1wIxZNfaGyB002mhL2LTDhI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+<h3 class="font-label-md text-label-md text-on-tertiary">Botanic Living</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="bg-white/95 dark:bg-stone-900/95 backdrop-blur-md text-[10px] font-medium uppercase tracking-widest docked full-width bottom-0 border-t border-[#2D5A41]/5 shadow-[0_-4px_20px_rgba(45,90,65,0.05)] active:scale-95 transition-all fixed bottom-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-4 md:hidden">
+<a class="flex flex-col items-center justify-center text-[#2D5A41] dark:text-emerald-400 scale-105 text-[#2D5A41] font-bold" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 text-stone-600 dark:text-stone-400" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="potted_plant">potted_plant</span>
+<span class="font-label-sm text-label-sm">Gallery</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 text-stone-600 dark:text-stone-400" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="menu_book">menu_book</span>
+<span class="font-label-sm text-label-sm">Journal</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 text-stone-600 dark:text-stone-400" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-sm text-label-sm">Consult</span>
+</a>
+</nav>
+</body></html>
