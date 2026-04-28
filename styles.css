@@ -666,11 +666,68 @@ h1, h2, h3, h4 {
     }
 }
 
+.bottom-nav-mobile {
+    display: none;
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
+    body {
+        padding-bottom: 80px; /* space for bottom nav */
+    }
+    
+    /* --- Bottom Navigation Bar --- */
+    .bottom-nav-mobile {
+        display: flex !important;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 -4px 20px rgba(45, 90, 65, 0.05);
+        z-index: 1000;
+        padding-bottom: env(safe-area-inset-bottom);
+        border-top: 1px solid rgba(45, 90, 65, 0.05);
+    }
+
+    .bottom-nav-mobile .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #6A7A6E;
+        text-decoration: none;
+        gap: 4px;
+        transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .bottom-nav-mobile .nav-item.active {
+        color: var(--primary-green);
+        transform: scale(1.05);
+        font-weight: bold;
+    }
+
+    .bottom-nav-mobile .nav-item i {
+        font-size: 1.2rem;
+    }
+
+    .bottom-nav-mobile .nav-item span {
+        font-size: 10px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
     /* --- Navigation: Show hamburger at tablet/mobile --- */
     .menu-toggle {
-        display: block !important;
+        display: none !important;
+    }
+    .navbar {
+        justify-content: center;
     }
     .nav-links {
         display: none;
@@ -692,16 +749,27 @@ h1, h2, h3, h4 {
     /* --- Hero: Fix parallax and scale text --- */
     .hero {
         background-attachment: scroll; /* Fixed bg breaks on most mobile browsers */
+        align-items: flex-end;
+        padding-bottom: 2rem;
     }
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     .hero p {
         font-size: 1.1rem;
         margin-bottom: 20px;
     }
     .hero-content {
-        padding: 40px 25px;
+        padding: 30px 20px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 0 20px rgba(45, 90, 65, 0.1);
+        border-radius: 12px;
+        width: 100%;
+        margin-top: auto;
+    }
+    .hero-content .primary-btn {
+        width: 100%;
     }
 
     /* --- About Section --- */
