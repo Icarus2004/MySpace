@@ -164,3 +164,48 @@ const observer = new IntersectionObserver((entries, observer) => {
 document.querySelectorAll('.fade-in').forEach(element => {
     observer.observe(element);
 });
+
+// Bottom Navigation active state logic
+const allSections = document.querySelectorAll('header.hero, section');
+const bottomNavItems = document.querySelectorAll('.bottom-nav-mobile .nav-item');
+
+if (bottomNavItems.length > 0) {
+    const navObserverOptions = {
+        root: null,
+        rootMargin: '-50% 0px -50% 0px',
+        threshold: 0
+    };
+
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                let activeIndex = -1;
+
+                if (entry.target.tagName.toLowerCase() === 'header' || id === 'about' || id === 'vision') {
+                    activeIndex = 0; // Home
+                } else if (id === 'projects' || id === 'process') {
+                    activeIndex = 1; // Gallery
+                } else if (id === 'journal') {
+                    activeIndex = 2; // Journal
+                } else if (id === 'contact') {
+                    activeIndex = 3; // Consult
+                }
+
+                if (activeIndex !== -1) {
+                    bottomNavItems.forEach((item, index) => {
+                        if (index === activeIndex) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+                }
+            }
+        });
+    }, navObserverOptions);
+
+    allSections.forEach(section => {
+        navObserver.observe(section);
+    });
+}
