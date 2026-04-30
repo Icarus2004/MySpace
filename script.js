@@ -153,7 +153,25 @@ if (consultationForm) {
         const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
 
-        // Construct WhatsApp message
+        // 1. Send Email silently via FormSubmit API
+        fetch("https://formsubmit.co/ajax/exerevnomyspace@gmail.com", {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                Name: name,
+                Email: email,
+                Phone: phone,
+                Space_Type: finalSpaceType,
+                Size: spaceSize,
+                Goals: projectGoals,
+                _subject: `New Consultation Request from ${name}`
+            })
+        }).catch(error => console.error("Error sending email:", error));
+
+        // 2. Construct WhatsApp message
         let message = `*New Consultation Request*\n\n`;
         message += `*Name:* ${name}\n`;
         message += `*Email:* ${email}\n`;
@@ -164,7 +182,7 @@ if (consultationForm) {
 
         const whatsappUrl = `https://wa.me/919830113283?text=${encodeURIComponent(message)}`;
         
-        // Normally we would use fetch here, simulating success for now
+        // Open WhatsApp after a short delay to ensure fetch starts
         setTimeout(() => {
             // Open WhatsApp in a new tab
             window.open(whatsappUrl, '_blank');
