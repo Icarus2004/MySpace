@@ -143,8 +143,32 @@ if (consultationForm) {
         btn.textContent = 'Sending...';
         btn.style.opacity = '0.8';
         
+        // Collect form data
+        const spaceType = document.getElementById('spaceType').value;
+        const otherSpace = document.getElementById('otherSpace').value;
+        const finalSpaceType = spaceType === 'other' ? otherSpace : spaceType;
+        const spaceSize = document.getElementById('spaceSize').value || 'Not provided';
+        const projectGoals = document.getElementById('projectGoals').value;
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+
+        // Construct WhatsApp message
+        let message = `*New Consultation Request*\n\n`;
+        message += `*Name:* ${name}\n`;
+        message += `*Email:* ${email}\n`;
+        message += `*Phone:* ${phone}\n`;
+        message += `*Space Type:* ${finalSpaceType}\n`;
+        message += `*Size:* ${spaceSize}\n`;
+        message += `*Goals:* ${projectGoals}`;
+
+        const whatsappUrl = `https://wa.me/919830113283?text=${encodeURIComponent(message)}`;
+        
         // Normally we would use fetch here, simulating success for now
         setTimeout(() => {
+            // Open WhatsApp in a new tab
+            window.open(whatsappUrl, '_blank');
+
             btn.textContent = 'Request Sent! 🌿';
             btn.style.background = 'var(--primary-green)';
             document.getElementById('form-success').style.display = 'block';
