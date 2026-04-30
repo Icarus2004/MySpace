@@ -116,6 +116,23 @@ prevBtns.forEach(btn => {
     });
 });
 
+// Space Type 'Other' logic
+const spaceType = document.getElementById('spaceType');
+const otherSpaceGroup = document.getElementById('otherSpaceGroup');
+const otherSpace = document.getElementById('otherSpace');
+
+if (spaceType && otherSpaceGroup && otherSpace) {
+    spaceType.addEventListener('change', (e) => {
+        if (e.target.value === 'other') {
+            otherSpaceGroup.style.display = 'block';
+            otherSpace.required = true;
+        } else {
+            otherSpaceGroup.style.display = 'none';
+            otherSpace.required = false;
+        }
+    });
+}
+
 // Form submission handler
 const consultationForm = document.getElementById('consultation-form');
 if (consultationForm) {
